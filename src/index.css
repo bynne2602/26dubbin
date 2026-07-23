@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:wght@600;800&family=Montserrat:wght@600;800&family=Lexend:wght@500;700&family=Patrick+Hand&family=Anton&family=Oswald:wght@400;700&family=Be+Vietnam+Pro:wght@400;700;900&family=Bungee&family=Saira+Condensed:wght@400;700&family=Lobster&family=Pacifico&family=Bangers&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Quicksand", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+

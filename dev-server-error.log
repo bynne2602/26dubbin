@@ -1,0 +1,435 @@
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 3.839653679s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.5-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"3s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 42.102794006s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.5-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"42s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 41.322998153s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.5-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"41s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 19.74866235s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.5-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"19s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 38.336555564s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.5-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"38s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 9.408424571s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-3.5-flash","location":"global"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"9s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Gemini translation: Gemini key #4/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #1/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #2/4 reached quota; switching to the next key.
+Gemini translation: Gemini key #3/4 reached quota; switching to the next key.
+Gemini generation failed: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+Error transcribing video: GeminiKeysExhaustedError: Tất cả 4 Gemini API key đều đã hết quota hoặc đang bị giới hạn. Vui lòng thêm key mới hoặc thử lại sau.
+    at runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:339:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+  statusCode: 429,
+  cause: ApiError: {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-3.5-flash\nPlease retry in 47.668178715s.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerDayPerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-3.5-flash"},"quotaValue":"20"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"47s"}]}}
+      at throwErrorIfNotOK (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:982:24)
+      at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\_api_client.ts:587:9)
+      at async Models.Models.generateContent (E:\Design\thành\dubbintool.com\node_modules\@google\genai\src\models.ts:128:14)
+      at async runWithGeminiKeyRotation (E:\Design\thành\dubbintool.com\server.ts:326:22)
+      at async <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1017:22) {
+    status: 429
+  }
+}
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Error generating TTS: Error: Lỗi kết nối API TikTok: Gateway Time-out (504)
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1510:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[2m14:35:50[22m [31m[1m[vite][22m[39m [31mInternal server error: E:\Design\thành\dubbintool.com\src\StudioController.tsx: Expected corresponding JSX closing tag for <NarrationLayout>. (7986:10)
+
+[0m [90m 7984 |[31m               [33m<[31m[33m/[31m[33mmotion[31m[33m.[31mdiv[33m>[31m
+ [90m 7985 |[31m             )}
+[31m[1m>[22m[31m[90m 7986 |[31m           [33m<[31m[33m/[31m[33mAnimatePresence[31m[33m>[31m
+ [90m      |[31m           [31m[1m^[22m[31m
+ [90m 7987 |[31m
+ [90m 7988 |[31m           {[90m/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */[31m}
+ [90m 7989 |[31m           {videoSrc [33m&&[31m ([0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mE:/Design/thành/dubbintool.com/src/StudioController.tsx[39m:7986:10
+[33m  7984|                </motion.div>
+  7985|              )}
+  7986|            </AnimatePresence>
+     |            ^
+  7987|  
+  7988|            {/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */}[39m
+      at toParseError (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\tokenizer\index.ts:1504:19)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:527:18)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:429:23)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at fn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3745:23)
+      at TypeScriptParserMixin.tryParse (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\util.ts:174:20)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3744:20)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:257:12)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:256:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3311:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1825:16)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1170:21)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:583:22)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:597:12)
+      at TypeScriptParserMixin.parseExprOpRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:582:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:513:27)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:534:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:435:17)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3764:22)
+      at TypeScriptParserMixin.parseExpressionBase (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:226:23)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:39)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:376:33)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:500:24)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+[2m14:35:50[22m [31m[1m[vite][22m[39m [31mInternal server error: E:\Design\thành\dubbintool.com\src\StudioController.tsx: Expected corresponding JSX closing tag for <NarrationLayout>. (7986:10)
+
+[0m [90m 7984 |[31m               [33m<[31m[33m/[31m[33mmotion[31m[33m.[31mdiv[33m>[31m
+ [90m 7985 |[31m             )}
+[31m[1m>[22m[31m[90m 7986 |[31m           [33m<[31m[33m/[31m[33mAnimatePresence[31m[33m>[31m
+ [90m      |[31m           [31m[1m^[22m[31m
+ [90m 7987 |[31m
+ [90m 7988 |[31m           {[90m/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */[31m}
+ [90m 7989 |[31m           {videoSrc [33m&&[31m ([0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mE:/Design/thành/dubbintool.com/src/StudioController.tsx[39m:7986:10
+[33m  7984|                </motion.div>
+  7985|              )}
+  7986|            </AnimatePresence>
+     |            ^
+  7987|  
+  7988|            {/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */}[39m
+      at toParseError (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\tokenizer\index.ts:1504:19)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:527:18)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:429:23)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at fn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3745:23)
+      at TypeScriptParserMixin.tryParse (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\util.ts:174:20)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3744:20)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:257:12)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:256:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3311:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1825:16)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1170:21)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:583:22)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:597:12)
+      at TypeScriptParserMixin.parseExprOpRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:582:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:513:27)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:534:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:435:17)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3764:22)
+      at TypeScriptParserMixin.parseExpressionBase (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:226:23)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:39)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:376:33)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:500:24)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+[2m14:35:50[22m [31m[1m[vite][22m[39m [31mInternal server error: E:\Design\thành\dubbintool.com\src\StudioController.tsx: Expected corresponding JSX closing tag for <NarrationLayout>. (7986:10)
+
+[0m [90m 7984 |[31m               [33m<[31m[33m/[31m[33mmotion[31m[33m.[31mdiv[33m>[31m
+ [90m 7985 |[31m             )}
+[31m[1m>[22m[31m[90m 7986 |[31m           [33m<[31m[33m/[31m[33mAnimatePresence[31m[33m>[31m
+ [90m      |[31m           [31m[1m^[22m[31m
+ [90m 7987 |[31m
+ [90m 7988 |[31m           {[90m/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */[31m}
+ [90m 7989 |[31m           {videoSrc [33m&&[31m ([0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mE:/Design/thành/dubbintool.com/src/StudioController.tsx[39m:7986:10
+[33m  7984|                </motion.div>
+  7985|              )}
+  7986|            </AnimatePresence>
+     |            ^
+  7987|  
+  7988|            {/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */}[39m
+      at toParseError (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\tokenizer\index.ts:1504:19)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:527:18)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:429:23)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at fn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3745:23)
+      at TypeScriptParserMixin.tryParse (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\util.ts:174:20)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3744:20)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:257:12)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:256:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3311:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1825:16)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1170:21)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:583:22)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:597:12)
+      at TypeScriptParserMixin.parseExprOpRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:582:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:513:27)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:534:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:435:17)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3764:22)
+      at TypeScriptParserMixin.parseExpressionBase (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:226:23)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:39)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:376:33)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:500:24)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+[2m14:35:50[22m [31m[1m[vite][22m[39m [31mInternal server error: E:\Design\thành\dubbintool.com\src\StudioController.tsx: Expected corresponding JSX closing tag for <NarrationLayout>. (7986:10)
+
+[0m [90m 7984 |[31m               [33m<[31m[33m/[31m[33mmotion[31m[33m.[31mdiv[33m>[31m
+ [90m 7985 |[31m             )}
+[31m[1m>[22m[31m[90m 7986 |[31m           [33m<[31m[33m/[31m[33mAnimatePresence[31m[33m>[31m
+ [90m      |[31m           [31m[1m^[22m[31m
+ [90m 7987 |[31m
+ [90m 7988 |[31m           {[90m/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */[31m}
+ [90m 7989 |[31m           {videoSrc [33m&&[31m ([0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mE:/Design/thành/dubbintool.com/src/StudioController.tsx[39m:7986:10
+[33m  7984|                </motion.div>
+  7985|              )}
+  7986|            </AnimatePresence>
+     |            ^
+  7987|  
+  7988|            {/* PHẦN XUẤT BẢN & TẢI VỀ THÀNH PHẨM (Nằm ở cuối cột phải, thẳng hàng song song) */}[39m
+      at toParseError (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parse-error.ts:95:45)
+      at TypeScriptParserMixin.raise (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\tokenizer\index.ts:1504:19)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:527:18)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:429:23)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at fn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3745:23)
+      at TypeScriptParserMixin.tryParse (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\util.ts:174:20)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3744:20)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:257:12)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:256:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3311:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1825:16)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:1170:21)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:583:22)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+      at TypeScriptParserMixin.parseUpdate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:721:21)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:683:23)
+      at TypeScriptParserMixin.parseMaybeUnary (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3893:20)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:417:14)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:597:12)
+      at TypeScriptParserMixin.parseExprOpRightExpr (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:582:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:513:27)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:534:21)
+      at TypeScriptParserMixin.parseExprOp (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:2872:20)
+      at TypeScriptParserMixin.parseExprOps (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:435:17)
+      at TypeScriptParserMixin.parseMaybeConditional (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:384:23)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:301:21)
+      at TypeScriptParserMixin.parseMaybeAssign (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\typescript\index.ts:3764:22)
+      at TypeScriptParserMixin.parseExpressionBase (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:226:23)
+      at callback (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:39)
+      at TypeScriptParserMixin.allowInAnd (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:3197:12)
+      at TypeScriptParserMixin.parseExpression (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:217:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:376:33)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:500:24)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElementAt (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:483:34)
+      at TypeScriptParserMixin.jsxParseElement (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:559:19)
+      at TypeScriptParserMixin.parseExprAtom (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\plugins\jsx\index.ts:573:21)
+      at TypeScriptParserMixin.parseExprSubscripts (E:\Design\thành\dubbintool.com\node_modules\@babel\parser\src\parser\expression.ts:742:23)
+Error generating TTS: Error: TikTok Session ID không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật Session ID mới.
+    at <anonymous> (E:\Design\thành\dubbintool.com\server.ts:1526:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

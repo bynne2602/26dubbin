@@ -1,0 +1,501 @@
+
+> react-example@0.0.0 dev
+> tsx server.ts
+
+◇ injected env (0) from .env // tip: ⌘ enable debugging { debug: true }
+[PaddleOCR] Khởi tạo 4 worker; model=PP-OCRv6-small; backend=onnxruntime-node/cpu; cpus=24; threads/worker=6; source=local.
+Server running on http://localhost:3000
+[PaddleOCR] Sẵn sàng 4 worker; backend=onnxruntime-node/cpu.
+[2m12:34:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m12:34:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+[2m12:34:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m12:37:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m12:40:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m12:40:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m12:41:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 513
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 3 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 532
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 3 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 772
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 6 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 702
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 4 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 523
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 3 subtitle segments.
+[2m13:08:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:08:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+[2m13:08:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 779
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 6 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 670
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 5 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 746
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 5 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Raw response from Gemini length: 637
+[Sanity Check] All segments passed translation validation. No correction needed.
+Successfully generated and processed 5 subtitle segments.
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+[2m13:11:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+[2m13:12:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Generating speech using TikTok TTS for text: "Dáng vẻ vừa rồi của chú, thật ..." with voice: BV074_streaming
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+translate-video request: apiPlatform=gemini, useCustomApi=false, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+[2m13:23:30[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:23:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:24:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+translate-video request: apiPlatform=custom, useCustomApi=true, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Using Custom API directly because apiPlatform is custom.
+Raw response from Gemini length: 397
+Calling Custom API (https://platform.beeknoee.com/v1) for subtitle translation/refinement to Vietnamese...
+Generating speech using TikTok TTS for text: "Thẻ tên dùng ở đâu?..." with voice: BV074_streaming
+Custom API Raw Response length: 121
+Successfully refined subtitles using Custom Beeknoee API.
+[Sanity Check] Found 3 untranslated/incorrect segments. Starting re-translation correction pass...
+Correction raw response length: 109
+[Sanity Check] Successfully re-translated and corrected 0 segments!
+Successfully generated and processed 3 subtitle segments.
+translate-video request: apiPlatform=custom, useCustomApi=true, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Using Custom API directly because apiPlatform is custom.
+Raw response from Gemini length: 437
+Calling Custom API (https://platform.beeknoee.com/v1) for subtitle translation/refinement to Vietnamese...
+Custom API Raw Response length: 127
+Successfully refined subtitles using Custom Beeknoee API.
+[Sanity Check] Found 3 untranslated/incorrect segments. Starting re-translation correction pass...
+Correction raw response length: 109
+[Sanity Check] Successfully re-translated and corrected 0 segments!
+Successfully generated and processed 3 subtitle segments.
+translate-video request: apiPlatform=custom, useCustomApi=true, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Using Custom API directly because apiPlatform is custom.
+Raw response from Gemini length: 677
+Calling Custom API (https://platform.beeknoee.com/v1) for subtitle translation/refinement to Vietnamese...
+Custom API Raw Response length: 167
+Successfully refined subtitles using Custom Beeknoee API.
+[Sanity Check] Found 4 untranslated/incorrect segments. Starting re-translation correction pass...
+Correction raw response length: 145
+[Sanity Check] Successfully re-translated and corrected 0 segments!
+Successfully generated and processed 4 subtitle segments.
+translate-video request: apiPlatform=custom, useCustomApi=true, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Using Custom API directly because apiPlatform is custom.
+Raw response from Gemini length: 849
+Calling Custom API (https://platform.beeknoee.com/v1) for subtitle translation/refinement to Vietnamese...
+Custom API Raw Response length: 203
+Successfully refined subtitles using Custom Beeknoee API.
+[Sanity Check] Found 5 untranslated/incorrect segments. Starting re-translation correction pass...
+Correction raw response length: 181
+[Sanity Check] Successfully re-translated and corrected 0 segments!
+Successfully generated and processed 5 subtitle segments.
+Generating speech using TikTok TTS for text: "Người khác xuyên không không l..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Còn tên lừa đảo này xuyên khôn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "別人穿越不是大帝就是仙尊..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "別人穿越不是大帝就是仙尊..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "还以其替铜币发俸禄..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "这下城中官员百姓都慌了..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "这是什么玩意..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "若不是虾伯爷头像在里头..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Người khác xuyên không nếu khô..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lại còn dùng nó thay thế tiền ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thế này thì quan viên và bách ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cái thứ gì thế này?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nếu không phải vì có hình đầu ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tay nương tử nhà ta đã thò ra ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "May mà ta nhanh tay chặn lại đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tại sao?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "May mà thể diện của Hạ Bá gia ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Bá gia..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tờ giấy phát cho chúng ta này ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đúng vậy..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tháng này chỉ phát cho ta một ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bổng lộc của chúng ta đâu?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Các ngươi thì biết cái gì chứ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tờ giấy này gọi là Kim Bất Hoá..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Con cháu đời sau đều phải thờ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nó còn là bùa hộ mệnh của các ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nó có thể đổi lấy lương thực..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trong sử sách có ghi chép..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Năm Trinh Quán thứ hai, kinh s..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Châu chấu hoành hành, giá lươn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mấy tháng sau thế nào ta không..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nhưng vừa nãy suýt chút nữa đã..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tại sao lại dùng phiếu lương t..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sau này không dùng tiền được n..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chẳng lẽ sau này mua lương thự..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bổng lộc phát bằng phiếu lương..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thế thì có tiêu như tiền được ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ta thấy cứ phát tiền là thực t..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ta thấy cứ phát tiền là thực t..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Triều đại ta hiện đang thiếu đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đồng nghĩa với việc bổng lộc b..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nhưng phiếu lương thực thì khô..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chỉ có quan viên và nhân công ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mọi người hãy trân trọng nó đi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trịnh đại nhân, ngài cũng khôn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đúng vậy, ta cũng không có..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vậy chúng ta có thể dùng tiền ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bá gia hạ lệnh đồ trong phủ kh..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Một khi bị phát hiện sẽ nghiêm..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mặc dù phủ Thành chủ không cho..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "nhưng ngầm thì không can thiệp..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Các vị muốn đổi tiền có thể tì..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Các quan viên dư dả tiền bạc đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "khi có thiên tai, phiếu lương ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đổi lương thực trong thành khô..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Giờ đây găm hàng chờ bán chắc ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Giờ đây gom hàng chờ bán chắc ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lam Điền Huyện bá tiếp chỉ!..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Môn Hạ tuyên Lam Điền Huyện bá..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "lập tức vào cung diện thánh...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chủ quản thi hành...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thần Lam Điền Huyện bá Trương ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "kính cẩn nhận thánh chỉ, lập t..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Công công có biết Hoàng thượng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chuyện này nô tài không biết r..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Huyện bá hãy đi thẳng vào c..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sau khi nhận chỉ, Hạ Nhân lập ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vào cung không gặp Lý Thế Dân,..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "mà là Tiêu Ly...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nghe nói Hạ Huyện bá muốn ta x..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "không biết là muốn dụ dỗ bằng ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tiêu Quốc công khách sáo quá r..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sao có thể không dùng tình cảm..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vậy thì ta muốn nghe thử xem,..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "ngươi định dùng tình cảm lay đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trước đó, Lý Thế Dân muốn gả C..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chỉ cần nắm thóp được điểm yếu..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nói hay lắm, nắm thóp điểm yếu..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dễ nói thôi. Bản gốc @ Hạ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hạ Nhị..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ta chỉ nói cho một mình ngươi ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nếu không thì hãy tránh xa nơi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hạ Nhị..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tiêu Ly ta không có lời nào là..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hạ Nhị - Muốn nói th..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hạ - Lời cũng không ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hạ - Hay là hai ta đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cược @ Cược ngươi sẽ đi tìm bệ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc O..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hà..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hà Nhị Nhị: Chuyện n..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hà: Nếu ngươi thua t..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bản gốc @ Hà: Thua rồi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sáng mai lên triều ta sẽ xin l..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Để xem ngươi khua môi múa mép ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hà Nhân ghé sát tai hắn thì th..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tiêu Ly từ vẻ mặt khinh thường..." with voice: BV074_streaming
+[2m13:53:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Cuối cùng là vẻ mặt cuồng hỷ...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đi cùng ta đến Ngự Thư Phòng g..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "nỗi nhớ khắc cốt ghi tâm cũng ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "nỗi nhớ khắc cốt ghi tâm cũng ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tuy không biết nói gì nhưng th..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tự nhiên rồi...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chỉ là tiện tay mà thôi...." with voice: BV074_streaming
+[2m13:53:51[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+[2m13:54:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:54:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:54:34[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:54:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Người khác xuyên không nếu khô..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lại còn dùng nó thay thế tiền ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thế này thì quan viên và bách ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cái thứ gì thế này?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nếu không phải vì có hình đầu ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nếu không phải vì có hình đầu ..." with voice: BV074_streaming
+[2m13:55:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Nếu không phải vì có hình đầu ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nếu không phải vì có hình đầu ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tay nương tử nhà ta đã thò ra ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "May mà ta nhanh tay chặn lại đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tại sao?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "May mà thể diện của Hạ Bá gia ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Bá gia..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tờ giấy phát cho chúng ta này ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đúng vậy..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tháng này chỉ phát cho ta một ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Bổng lộc của chúng ta đâu?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Các ngươi thì biết cái gì chứ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tờ giấy này gọi là Kim Bất Hoá..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Con cháu đời sau đều phải thờ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nó còn là bùa hộ mệnh của các ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nó có thể đổi lấy lương thực..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trong sử sách có ghi chép..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Năm Trinh Quán thứ hai, kinh s..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Châu chấu hoành hành, giá lươn..." with voice: BV074_streaming
+[2m13:56:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Mấy tháng sau thế nào ta không..." with voice: BV074_streaming
+[2m13:56:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:56:44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:56:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:57:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:57:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:58:09[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:58:23[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m13:59:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:00:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:00:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:10:11[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:10:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:11:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mserver.ts[22m
+[2m14:11:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:11:56[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+[2m14:12:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/browserOcr.worker.ts[22m
+[2m14:13:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mserver.ts[22m
+[2m14:15:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:15:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:18:09[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:20:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:21:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ new dependencies optimized: [33monnxruntime-web/webgpu[32m[39m
+[2m14:21:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m14:25:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:26:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx[22m
+[2m14:26:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioApp.tsx, /src/index.css[22m
+[2m14:27:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioApp.tsx, /src/index.css[22m
+[2m14:27:55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioApp.tsx, /src/index.css[22m
+[2m14:29:52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:34:39[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioApp.tsx, /src/index.css[22m
+[2m14:34:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.tsx, /src/index.css[22m
+[2m14:34:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/StudioController.tsx[22m
+[2m14:35:43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:35:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:36:10[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:36:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\AutoDubbingLayout.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\ProjectLibraryLayout.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\PersonalizationLayout.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\TranslationLayout.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\NarrationLayout.tsx, /src/index.css[22m
+[2m14:37:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\layouts\SettingsLayout.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Chỉ là tiện tay mà thôi...." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tiêu mỗ xin tạ ơn trước, ta đi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nói xong, hắn liền quay người ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sao lại trở nên dễ nói chuyện ..." with voice: BV074_streaming
+[2m14:48:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:49:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:49:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:49:24[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:20[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:50:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:51:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:51:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:51:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:52:00[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:52:01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:52:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:52:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:55:45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:56:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:56:29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m14:56:36[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:02:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:02:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:02:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:07:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:08:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:15:14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:15:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:16:09[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:16:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:16:40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:17:48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m15:18:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "虾仁..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Qua T..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Nhân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ngươi bái ta làm sư phụ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mười năm sau ngươi sẽ có tư ch..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Nhân quay người bỏ đi luôn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Quay về đi, tiếp theo..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hôm nay là đại hội thu nhận đệ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Không thèm ngoảnh lại nhìn vị ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thanh niên nam nữ từ mười đến ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chịu khổ á? Không chịu một chú..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Người được chọn sẽ vào Vấn Đạo..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Kiếp này số của hắn là phải gi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Từ đây bước lên mây xanh..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mặc dù xuyên không về thời cổ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tuổi xương mười hai, linh căn ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nhưng thôn Hậu Đạo nơi hắn sốn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đặc biệt sáng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trong thế giới này..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Không phải nộp cống, không phả..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Linh căn càng ít thuộc tính cà..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cơm áo không lo..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dù là lĩnh ngộ công pháp..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Quan trọng nhất là cưới vợ khô..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đều sẽ nhẹ nhàng hơn người khá..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nhưng bảo chịu khổ thì tuyệt đ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Xa xa trên khán đài..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đến chó cũng không thèm tu luy..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đám trưởng lão vốn buồn ngủ lậ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Khóe miệng không ngừng giật gi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Từng người ánh mắt nồng nhiệt ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ta muốn về nhà mà..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đây là linh căn đơn thuộc tính..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lão già kia, ông làm cái gì th..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cô bé này không tệ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ngươi đã nói dối..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hình như là hậu nhân của Lâm g..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tiên nhân không nói lời nào..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ha ha ha, không trách được..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cô bé, em tên là gì?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chỉ còn lại những tiếng la hét..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thả tôi ra, tôi sợ độ cao..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tôi tên Lâm Tiềm Tiềm..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vân Trạch Lâm gia..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đúng vậy..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Qua T..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Không tệ nhỉ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Quay về đi, tiếp theo..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Có việc gì hãy tìm tôi bất cứ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hôm nay là đại hội thu nhận đệ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đa tạ trưởng bối..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thanh niên nam nữ từ mười đến ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Việc hỏi linh kéo dài từ sáng ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Người được chọn sẽ vào Vấn Đạo..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vốn dĩ trước trận hỏi linh xếp..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dần dần chỉ còn lại vài ba ngư..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Kinh là thiên nhân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dần dần chỉ còn lại vài ba ngư..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Từ đây bước lên mây xanh..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Kinh là thiên nhân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dần dần chỉ còn lại lác đác và..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ngay lúc này..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tuổi xương mười hai, linh căn ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lại thấy kiếm linh căn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đặc biệt sáng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trạch thân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trong thế giới này..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Linh căn càng ít thuộc tính cà..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Còn là biến dị..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dù là lĩnh ngộ công pháp..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "4..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đều sẽ nhẹ nhàng hơn người khá..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Xa xa trên khán đài..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đám trưởng lão vốn buồn ngủ lậ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Từng người ánh mắt nồng nhiệt ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đây là linh căn đơn thuộc tính..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cô bé này không tệ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hình như là hậu nhân của Lâm g..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ha ha ha, không trách được..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cô bé, em tên là gì?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tôi tên Lâm Tiềm Tiềm..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vân Trạch Lâm gia..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đúng vậy..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Không tệ nhỉ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Có việc gì hãy tìm tôi bất cứ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đa tạ trưởng bối..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Việc hỏi linh kéo dài từ sáng ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Vốn dĩ trước trận hỏi linh xếp..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dần dần chỉ còn lại vài ba ngư..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Dần dần chỉ còn lại lác đác và..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ngay lúc này..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Liền thấy một vị tiên nhân cưỡ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nháy mắt đã đến gần..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Khiến mọi người liên tục quay ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đó là một người đàn ông..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Khuôn mặt lạnh lùng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tay còn xách một thiếu niên ch..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Sao anh ta lại quay về?..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Là Phong chủ Lý..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lão Đăng làm quá đáng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lý Thanh Sơn hơi nhíu mày..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chớp mắt đã lên đài cao..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ồ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "E ngồi nôn xong ngã lăn ra đất..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chùi khóe miệng..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Cục cưng à..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Còn vương pháp sao..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thiếu niên mời vào trận..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tôm nhìn khuôn mặt đắng cay củ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Một nửa bất đắc dĩ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Đệ tử phụ trách kiểm tra đầy m..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Tuổi xương mười hai..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trên đài cao các trưởng lão ba..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Lại thấy kiếm linh căn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Trạch thân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Kinh là thiên nhân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Còn là biến dị..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "4..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Thông qua..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hà Nhân nhìn khuôn mặt đắng ca..." with voice: BV074_streaming
+[2m16:03:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:03:44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+Generating speech using TikTok TTS for text: "Hạ Nhân..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mười năm sau ngươi sẽ có tư ch..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Ngươi bái ta làm sư phụ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Hạ Nhân quay người bỏ đi luôn..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Không thèm ngoảnh lại nhìn vị ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Chịu khổ á? Không chịu một chú..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Kiếp này số của hắn là phải gi..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Mặc dù xuyên không về thời cổ ..." with voice: BV074_streaming
+Generating speech using TikTok TTS for text: "Nhưng thôn Hậu Đạo nơi hắn sốn..." with voice: BV074_streaming
+[2m16:08:16[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:08:17[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:08:19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+translate-video request: apiPlatform=custom, useCustomApi=true, allowFallback=true, geminiKeyCount=4, sourceLanguage=auto, targetLanguage=Vietnamese, extractionMethod=audio
+Sending video to AI service for transcription and translation to Vietnamese...
+Using Custom API directly because apiPlatform is custom.
+Raw response from Gemini length: 267
+Calling Custom API (https://platform.beeknoee.com/v1) for subtitle translation/refinement to Vietnamese...
+Custom API Raw Response length: 73
+Successfully refined subtitles using Custom Beeknoee API.
+[Sanity Check] Found 2 untranslated/incorrect segments. Starting re-translation correction pass...
+Correction raw response length: 151
+[Sanity Check] Successfully re-translated and corrected 2 segments!
+Successfully generated and processed 2 subtitle segments.
+[2m16:21:38[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:21:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:21:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m
+[2m16:21:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/@fs/E:\Design\thành\dubbintool.com\src\StudioController.tsx, /src/index.css[22m

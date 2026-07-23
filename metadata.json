@@ -1,0 +1,8 @@
+{
+  "name": "26Dubbin",
+  "description": "Upload a video to automatically transcribe, translate, and overlay subtitles, with custom settings to blur and cover original video subtitles.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
