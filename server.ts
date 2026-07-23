@@ -436,7 +436,6 @@ async function trackedCustomApiFetch(
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
 
   // Native OCR is a lazy safety net. Do not allocate Node worker_threads/model
   // memory unless both WebGPU and browser WASM have actually failed.
@@ -1625,9 +1624,16 @@ ${JSON.stringify(segmentsToCorrect.map((sub: any) => ({
       res.sendFile(path.join(distPath, "index.html"));
     });
   }
+  // Thêm đoạn này để Render kiểm tra xem server còn sống không
+  app.get('/', (req, res) => {
+    res.status(200).send('Server is running smoothly!');
+  });
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  // Khai báo PORT lấy từ môi trường đám mây hoặc mặc định là 3000
+  const PORT = process.env.PORT || 3000;
+
+  app.listen(Number(PORT), "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
   });
 }
 
