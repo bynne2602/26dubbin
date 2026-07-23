@@ -8,5 +8,4 @@
   force = true
   to = "/.netlify/functions/server/:splat"
 
-[functions]
-  included_files = ["dist/models/**", "dist/ffmpeg/**", "dist/ort/**"]
+# Bỏ phần included_files để không đóng gói các file AI model vào backend đám mây nữa
