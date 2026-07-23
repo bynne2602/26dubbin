@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[[redirects]]
+  from = "/api/*"
+  status = 200
+  force = true
+  to = "/.netlify/functions/server/:splat"
+
+[functions]
+  included_files = ["dist/models/**", "dist/ffmpeg/**", "dist/ort/**"]
