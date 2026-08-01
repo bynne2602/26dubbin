@@ -212,7 +212,7 @@ export default function AiScriptShortsTab({ geminiApiKey, tiktokSessionId = "", 
           <p className="mt-2 text-sm text-slate-500">Dán link video, AI tự xem và viết lại thành một kịch bản Shorts hoàn chỉnh.</p>
           <div className="mt-5 flex flex-wrap justify-center gap-2 text-xs font-bold">
             <span className="rounded-full border border-slate-200 bg-white px-3 py-1.5 text-slate-600"><Film className="mr-1 inline h-3.5 w-3.5" />Video nguồn tối đa 60 giây</span>
-            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-indigo-700"><Sparkles className="mr-1 inline h-3.5 w-3.5" />Video đầu ra 60–90 giây</span>
+            <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-indigo-700"><Sparkles className="mr-1 inline h-3.5 w-3.5" />Video kết thúc theo voice · tối đa 90 giây</span>
           </div>
           <div className="mx-auto mt-7 flex max-w-3xl flex-col gap-3 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl shadow-slate-200/50 sm:flex-row">
             <label className="flex min-w-0 flex-1 items-center gap-3 px-3"><Link2 className="h-5 w-5 shrink-0 text-slate-400" /><input value={url} onChange={(event) => setUrl(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") void generate(); }} disabled={busy} placeholder="Dán URL YouTube, TikTok, Bilibili, Facebook..." className="h-12 min-w-0 flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none placeholder:font-normal placeholder:text-slate-400" /></label>

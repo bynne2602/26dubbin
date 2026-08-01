@@ -105,6 +105,12 @@ type PipelineJob = {
 };
 
 const RELEASE_NOTES: Record<string, string[]> = {
+  "1.1.2": [
+    "AI Script Shorts không còn ép kịch bản hoặc video đạt tối thiểu 60 giây.",
+    "Video kết thúc chính xác theo voice và chỉ giới hạn tối đa 90 giây.",
+    "Phụ đề hiển thị từng từ tại vùng an toàn Y=1400 của khung dọc 1080×1920.",
+    "Giữ chữ trắng viền đen và tô karaoke vàng đúng theo timestamp giọng đọc.",
+  ],
   "1.1.1": [
     "AI Script Shorts: phụ đề karaoke trắng, viền đen và tô vàng theo đúng voice.",
     "Đưa phụ đề lên vùng an toàn giữa-thấp để dễ đọc trên video dọc.",

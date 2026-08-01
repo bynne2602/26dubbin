@@ -1812,10 +1812,10 @@ except Exception as e:
       const selectedTtsVoice = resolveBeeknoeeVoice(req.body?.voice);
       const isNgocHuyenVoice = selectedTtsVoice.engine === "vieneu" && selectedTtsVoice.id.includes("Ngọc Huyền");
       const narrationWordBudget = isNgocHuyenVoice
-        ? { min: 105, max: 130 }
+        ? { min: 35, max: 130 }
         : selectedTtsVoice.engine === "vieneu"
-          ? { min: 135, max: 170 }
-          : { min: 155, max: 195 };
+          ? { min: 45, max: 170 }
+          : { min: 50, max: 195 };
       if (selectedTtsVoice.engine === "tiktok" && !String(req.body?.tiktokSessionId || "").trim()) {
         throw new Error("Giọng TikTok cần Session ID hợp lệ. Hãy cập nhật Session ID trong tab Lồng tiếng trước khi Generate.");
       }
@@ -1880,7 +1880,7 @@ except Exception as e:
           model: "gemini-3.5-flash",
           contents: [{ role: "user", parts: [
             { fileData: { fileUri: uploaded.uri, mimeType: uploaded.mimeType || "video/mp4" } },
-            { text: `Bạn là biên kịch video ngắn tiếng Việt. Hãy thực sự xem và nghe toàn bộ video: hiểu diễn biến, nhân vật, quan hệ, chữ trên màn hình, lời thoại, cao trào, twist, cảm xúc và ý đồ kể chuyện. Tự xây knowledge graph nội bộ nhưng không giải thích quy trình. Viết một kịch bản MỚI dựa trên nội dung cốt lõi; tuyệt đối không chép hoặc paraphrase lần lượt từng câu. Kịch bản phải tự nhiên, cụ thể, giàu nhịp kể, có hook mạnh, body liền mạch và ending rõ ràng. Không dùng câu sáo rỗng, không lặp cấu trúc, không liệt kê vô nghĩa kiểu "tính chiến đấu, tính định hướng, tính...". BẮT BUỘC dài ${narrationWordBudget.min}–${narrationWordBudget.max} từ tiếng Việt để giọng ${selectedTtsVoice.label} đọc ở TỐC ĐỘ GỐC trong khoảng 60–90 giây; câu ngắn, dấu câu tự nhiên, không lặp ý, không chèn tiêu đề, nhãn Hook/Body/Ending hoặc bất kỳ metadata nào vào lời đọc. Xác định tâm điểm chủ thể để crop dọc 9:16 bằng tọa độ chuẩn hóa x/y từ 0 đến 1. Trả về duy nhất JSON hợp lệ theo cấu trúc: {"summary":"...","cropFocus":{"x":0.5,"y":0.5},"script":{"hook":"...","body":"...","ending":"...","fullText":"...","estimatedDurationSeconds":75},"metadata":{"title":"...","description":"...","hashtags":["..."],"thumbnailTitle":"...","thumbnailPrompt":"...","keywords":["..."]}}. fullText phải ghép Hook, Body, Ending thành văn bản sẵn dùng.` },
+            { text: `Bạn là biên kịch video ngắn tiếng Việt. Hãy thực sự xem và nghe toàn bộ video: hiểu diễn biến, nhân vật, quan hệ, chữ trên màn hình, lời thoại, cao trào, twist, cảm xúc và ý đồ kể chuyện. Tự xây knowledge graph nội bộ nhưng không giải thích quy trình. Viết một kịch bản MỚI dựa trên nội dung cốt lõi; tuyệt đối không chép hoặc paraphrase lần lượt từng câu. Kịch bản phải tự nhiên, cụ thể, giữ nhịp nhanh, có hook mạnh, body liền mạch và ending rõ ràng. Không dùng câu sáo rỗng, không lặp cấu trúc, không liệt kê vô nghĩa kiểu "tính chiến đấu, tính định hướng, tính...". Chỉ viết đủ để kể trọn nội dung, trong khoảng ${narrationWordBudget.min}–${narrationWordBudget.max} từ; TUYỆT ĐỐI không kéo dài để đạt mốc 60 giây. Giọng ${selectedTtsVoice.label} đọc ở TỐC ĐỘ GỐC, video kết thúc ngay khi voice kết thúc và chỉ giới hạn tối đa 90 giây; câu ngắn, dấu câu tự nhiên, không lặp ý, không chèn tiêu đề, nhãn Hook/Body/Ending hoặc bất kỳ metadata nào vào lời đọc. Xác định tâm điểm chủ thể để crop dọc 9:16 bằng tọa độ chuẩn hóa x/y từ 0 đến 1. Trả về duy nhất JSON hợp lệ theo cấu trúc: {"summary":"...","cropFocus":{"x":0.5,"y":0.5},"script":{"hook":"...","body":"...","ending":"...","fullText":"...","estimatedDurationSeconds":45},"metadata":{"title":"...","description":"...","hashtags":["..."],"thumbnailTitle":"...","thumbnailPrompt":"...","keywords":["..."]}}. fullText phải ghép Hook, Body, Ending thành văn bản sẵn dùng.` },
           ] }],
           config: { responseMimeType: "application/json", temperature: 0.85 },
         });
@@ -2050,10 +2050,8 @@ except Exception as e:
       const subtitleGroups: string[] = [];
       for (let index = 0; index < subtitleWords.length;) {
         const first = subtitleWords[index];
-        const sentenceEnd = /[.!?,;:]$/u.test(first);
-        const take = sentenceEnd || index === subtitleWords.length - 1 ? 1 : 2;
-        subtitleGroups.push(subtitleWords.slice(index, index + take).join(" "));
-        index += take;
+        subtitleGroups.push(first);
+        index += 1;
       }
       let consumedScriptWords = 0;
       const subtitleEvents = subtitleGroups.map((group) => {
@@ -2083,7 +2081,7 @@ except Exception as e:
         }).join(" ");
         // Keep captions in the lower-middle safe zone (the marked area), not
         // against the bottom UI/caption edge of vertical social videos.
-        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,{\\an5\\pos(540,1120)}${karaokeText}`;
+        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,{\\an5\\pos(540,1500)}${karaokeText}`;
       });
       const subtitlesPath = path.join(workDir, "shorts.ass");
       fs.writeFileSync(subtitlesPath, [
@@ -2096,7 +2094,7 @@ except Exception as e:
         "[V4+ Styles]",
         "Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding",
         // White idle text, yellow karaoke fill, heavy black outline.
-        "Style: Shorts,Arial,72,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,7,1,5,70,70,0,1",
+        "Style: Shorts,Arial,96,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,8,2,5,120,120,0,1",
         "",
         "[Events]",
         "Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text",
@@ -2111,7 +2109,7 @@ except Exception as e:
         `[0:v]trim=duration=${outputDuration.toFixed(3)},setpts=PTS-STARTPTS,split=2[bgsrc][fgsrc]`,
         "[bgsrc]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=luma_radius=36:luma_power=2:chroma_radius=18:chroma_power=1,eq=brightness=-0.10:saturation=0.85[bg]",
         "[fgsrc]scale=1080:1920:force_original_aspect_ratio=decrease,setsar=1[fg]",
-        "[bg][fg]overlay=(W-w)/2:(H-h)/2:shortest=1[base]",
+        "[bg][fg]overlay=(W-w)/2:(H-h)/2:eof_action=repeat:shortest=0[base]",
       ];
       if (titleOverlayEnabled && headline) {
         videoFilters.push(
