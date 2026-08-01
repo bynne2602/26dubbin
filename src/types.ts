@@ -8,6 +8,8 @@ export interface Subtitle {
 
 export interface BlurBox {
   id: string;
+  start?: number;    // Optional active range on the editor timeline
+  end?: number;
   xPosition: number;  // Percentage from left (0 to 100)
   yPosition: number;  // Percentage from top (0 to 100)
   width: number;      // Percentage of video width (0 to 100)
@@ -50,4 +52,38 @@ export interface SubtitleSettings {
   position: "top" | "bottom" | "center" | "blur-box" | "custom"; // Vị trí hiển thị phụ đề trên màn hình
   customX?: number;       // Vị trí ngang tuỳ chỉnh (%)
   customY?: number;       // Vị trí dọc tuỳ chỉnh (%)
+}
+
+// Electron IPC API exposed via preload contextBridge
+declare global {
+  interface Window {
+    electronAPI?: {
+      selectOutputFolder: () => Promise<string | null>;
+      saveFileToFolder: (
+        folder: string,
+        filename: string,
+        base64Data: string,
+      ) => Promise<{ success: boolean; filePath?: string; error?: string }>;
+      saveFileDialog: (
+        defaultFilename: string,
+        base64Data: string,
+      ) => Promise<{ success: boolean; filePath?: string; error?: string }>;
+      saveRenderedVideo: (
+        downloadUrl: string,
+        folder: string,
+        filename: string,
+      ) => Promise<{ success: boolean; filePath?: string; size?: number; error?: string; canceled?: boolean }>;
+      onRenderSaveProgress: (callback: (progress: { transferred: number; total: number; percent?: number; bytesPerSecond: number; done?: boolean }) => void) => () => void;
+      onAppRecovered: (callback: (status: { crashes: number }) => void) => () => void;
+      runSystemDiagnostics: (folder?: string) => Promise<any>;
+      openPath: (target: string) => Promise<string>;
+      showItemInFolder: (target: string) => Promise<boolean>;
+      clearTemp: () => Promise<{ removed: number }>;
+      appendLog: (message: string) => Promise<void>;
+      openLog: () => Promise<string>;
+      onUpdateStatus: (callback: (status: { state: "checking" | "downloading" | "ready" | "idle" | "error"; percent?: number; version?: string }) => void) => () => void;
+      installUpdate: () => Promise<void>;
+      getAppVersion: () => Promise<string>;
+    };
+  }
 }

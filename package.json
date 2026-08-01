@@ -1,33 +1,124 @@
 {
-  "name": "react-example",
+  "name": "dubbintool",
+  "productName": "DubbinTool",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.1.0",
   "type": "module",
+  "main": "dist/electron/main.cjs",
   "scripts": {
     "dev": "tsx server.ts",
-    "ocr:verify": "node scripts/verify-paddle-ocr.mjs",
     "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "build:electron": "npm run build && esbuild electron/main.ts --bundle --platform=node --format=cjs --external:electron --sourcemap --outfile=dist/electron/main.cjs && esbuild electron/preload.ts --bundle --platform=node --format=cjs --external:electron --sourcemap --outfile=dist/electron/preload.cjs",
+    "electron:dev": "npm run build:electron && electron dist/electron/main.cjs",
+    "electron:pack": "npm run build:electron && electron-builder --win",
+    "electron:pack:update": "npm run build:electron && electron-builder --win --config build/electron-builder.update.cjs",
+    "electron:pack:full": "npm run build:electron && electron-builder --win --config build/electron-builder.full.cjs",
+    "build:ocr-engine": "powershell -ExecutionPolicy Bypass -File scripts/build-ocr-engine.ps1",
     "start": "node dist/server.cjs",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "test:ocr-dedupe": "tsx scripts/test_ocr_dedupe.ts",
+    "test:subtitle-optimizer": "tsx scripts/test_subtitle_optimizer.ts",
+    "test:subtitle-sizing": "tsx scripts/test_subtitle_sizing.ts"
+  },
+  "build": {
+    "appId": "com.dubbintool.app",
+    "productName": "DubbinTool",
+    "directories": {
+      "output": "C:\\DubbinBuild\\release"
+    },
+    "files": [
+      "dist/**/*",
+      "scripts/ocr_video_stream.py",
+      "scripts/render_video.py",
+      "scripts/ocr_frame.py",
+      "scripts/vieneu_tts.py",
+      "scripts/align_voice_words.py"
+    ],
+    "extraResources": [
+      {
+        "from": "dist",
+        "to": "app/dist",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "scripts/ocr_video_stream.py",
+        "to": "app/scripts/ocr_video_stream.py"
+      },
+      {
+        "from": "scripts/render_video.py",
+        "to": "app/scripts/render_video.py"
+      },
+      {
+        "from": "scripts/ocr_frame.py",
+        "to": "app/scripts/ocr_frame.py"
+      },
+      {
+        "from": "scripts/vieneu_tts.py",
+        "to": "app/scripts/vieneu_tts.py"
+      },
+      {
+        "from": "scripts/align_voice_words.py",
+        "to": "app/scripts/align_voice_words.py"
+      },
+      {
+        "from": "resources/ocr-engine/_internal/imageio_ffmpeg/binaries/ffmpeg-win-x86_64-v7.1.exe",
+        "to": "ffmpeg/ffmpeg.exe"
+      },
+      {
+        "from": "resources/cuda-libs",
+        "to": "cuda-libs"
+      },
+      {
+        "from": "resources/ocr-engine",
+        "to": "ocr-engine"
+      },
+      {
+        "from": "resources/media-downloader",
+        "to": "media-downloader"
+      },
+      {
+        "from": "resources/vc-redist",
+        "to": "vc-redist"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "public/assets/icon.ico",
+      "shortcutName": "DubbinTool",
+      "include": "build/installer.nsh"
+    },
+    "asar": false,
+    "publish": {
+      "provider": "generic",
+      "url": "https://download.dubbintool.io.vn/updates/"
+    }
   },
   "dependencies": {
-    "@ffmpeg/core": "^0.12.10",
-    "@ffmpeg/ffmpeg": "^0.12.15",
-    "@ffmpeg/util": "^0.12.2",
     "@google/genai": "^2.4.0",
     "@tailwindcss/vite": "^4.1.14",
+    "@types/multer": "^2.2.0",
     "@vitejs/plugin-react": "^5.0.4",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
-    "firebase": "^12.16.0",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
-    "onnxruntime-node": "^1.27.0",
-    "onnxruntime-web": "^1.27.0",
-    "ppu-paddle-ocr": "^6.1.2",
+    "multer": "^2.2.0",
     "react": "^19.0.1",
-    "react-dom": "^19.0.1",
-    "vite": "^6.2.3"
+    "react-dom": "^19.0.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
@@ -35,6 +126,9 @@
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.21",
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3",
+    "electron-updater": "^6.6.2",
     "esbuild": "^0.25.0",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",

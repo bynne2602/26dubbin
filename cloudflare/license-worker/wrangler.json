@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dubbintool-license",
+  "main": "src/restored-worker.ts",
+  "workers_dev": true,
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
+  "routes": [
+    { "pattern": "dubbintool.io.vn/admin*", "zone_name": "dubbintool.io.vn" },
+    { "pattern": "dubbintool.io.vn/api/license/*", "zone_name": "dubbintool.io.vn" },
+    { "pattern": "dubbintool.io.vn/api/trial/*", "zone_name": "dubbintool.io.vn" }
+  ],
+  "kv_namespaces": [{ "binding": "LICENSE_KV", "id": "7180185df2f940439bae48411090f726" }],
+  "ratelimits": [{
+    "name": "TTS_RATE_LIMITER",
+    "namespace_id": "1130",
+    "simple": { "limit": 20, "period": 60 }
+  }]
+}

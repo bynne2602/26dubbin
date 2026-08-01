@@ -1,7 +1,7 @@
 import type { StudioRoute } from "../../app/routes";
 
 export default function AppFooter({ activeRoute }: { activeRoute: StudioRoute }) {
-  const hidden = activeRoute === "translate" || activeRoute === "projects" || activeRoute === "settings";
+  const hidden = activeRoute === "dubbin" || activeRoute === "editor" || activeRoute === "projects" || activeRoute === "settings";
   return (
     <footer className={`mt-20 border-t border-slate-200/80 bg-white lg:ml-64 ${hidden ? "hidden" : ""}`} id="footer">
       <div className="mx-auto max-w-7xl px-6 py-12">
