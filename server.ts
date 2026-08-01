@@ -1939,7 +1939,10 @@ except Exception as e:
       if (processedVoiceDuration > 89.0) {
         throw new Error(`Kịch bản vẫn quá dài (${voiceDuration.toFixed(1)} giây). AI cần tạo lại để video không vượt quá 90 giây.`);
       }
-      const outputDuration = Math.max(60, Math.min(90, processedVoiceDuration + 1));
+      // The narration is the master clock for AI Shorts. Never pad a short
+      // narration to 60s: that used to leave a black/frozen tail with music.
+      // FFmpeg loops a short source below and trims a long source here.
+      const outputDuration = Math.min(90, processedVoiceDuration);
 
       send({ type: "progress", percent: 92, message: "Đang đồng bộ phụ đề theo từng từ của voice..." });
       const pythonExe = await probePythonExe();
@@ -2053,15 +2056,34 @@ except Exception as e:
         index += take;
       }
       let consumedScriptWords = 0;
-      const subtitleEvents = subtitleGroups.map((group, index) => {
+      const subtitleEvents = subtitleGroups.map((group) => {
         const groupWordCount = group.split(/\s+/).length;
         const firstAlignedIndex = Math.min(alignedWords.length - 1, Math.floor(consumedScriptWords * alignedWords.length / subtitleWords.length));
         consumedScriptWords += groupWordCount;
         const lastAlignedIndex = Math.min(alignedWords.length - 1, Math.max(firstAlignedIndex, Math.ceil(consumedScriptWords * alignedWords.length / subtitleWords.length) - 1));
         const start = alignedWords[firstAlignedIndex].start / requestedVoiceRate;
         const end = alignedWords[lastAlignedIndex].end / requestedVoiceRate;
-        const safeText = group.toLocaleUpperCase("vi-VN").replace(/\\/g, "\\\\").replace(/{/g, "\\{").replace(/}/g, "\\}");
-        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,${safeText}`;
+        const groupWords = group.split(/\s+/).filter(Boolean);
+        const alignedSlice = alignedWords.slice(firstAlignedIndex, lastAlignedIndex + 1);
+        const groupDurationCs = Math.max(12, Math.round((end - start) * 100));
+        const rawWeights = groupWords.map((_, wordIndex) => {
+          const aligned = alignedSlice[Math.min(alignedSlice.length - 1, Math.floor(wordIndex * alignedSlice.length / groupWords.length))];
+          return Math.max(0.08, (aligned?.end || 0) - (aligned?.start || 0));
+        });
+        const weightTotal = rawWeights.reduce((sum, value) => sum + value, 0) || 1;
+        let assignedCs = 0;
+        const karaokeText = groupWords.map((word, wordIndex) => {
+          const remaining = Math.max(1, groupDurationCs - assignedCs);
+          const durationCs = wordIndex === groupWords.length - 1
+            ? remaining
+            : Math.max(1, Math.min(remaining - (groupWords.length - wordIndex - 1), Math.round(groupDurationCs * rawWeights[wordIndex] / weightTotal)));
+          assignedCs += durationCs;
+          const safeWord = word.toLocaleUpperCase("vi-VN").replace(/\\/g, "\\\\").replace(/{/g, "\\{").replace(/}/g, "\\}");
+          return `{\\k${durationCs}}${safeWord}`;
+        }).join(" ");
+        // Keep captions in the lower-middle safe zone (the marked area), not
+        // against the bottom UI/caption edge of vertical social videos.
+        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,{\\an5\\pos(540,1120)}${karaokeText}`;
       });
       const subtitlesPath = path.join(workDir, "shorts.ass");
       fs.writeFileSync(subtitlesPath, [
@@ -2073,7 +2095,8 @@ except Exception as e:
         "",
         "[V4+ Styles]",
         "Format: Name,Fontname,Fontsize,PrimaryColour,SecondaryColour,OutlineColour,BackColour,Bold,Italic,Underline,StrikeOut,ScaleX,ScaleY,Spacing,Angle,BorderStyle,Outline,Shadow,Alignment,MarginL,MarginR,MarginV,Encoding",
-        "Style: Shorts,Arial,72,&H00FFFFFF,&H00FFFFFF,&H00101010,&H90000000,-1,0,0,0,100,100,0,0,1,6,2,2,70,70,125,1",
+        // White idle text, yellow karaoke fill, heavy black outline.
+        "Style: Shorts,Arial,72,&H0000D7FF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,0,0,1,7,1,5,70,70,0,1",
         "",
         "[Events]",
         "Format: Layer,Start,End,Style,Name,MarginL,MarginR,MarginV,Effect,Text",
@@ -2083,10 +2106,9 @@ except Exception as e:
       const videoFilters = [
         // Keep the whole source visible. Non-9:16 sources get a full-frame blurred copy
         // behind the contained foreground instead of being aggressively center-cropped.
-        // Preserve story order: play the source exactly once. Stretch by at
-        // most 35%; if narration is still longer, hold the final frame rather
-        // than jumping back to the beginning and repeating random actions.
-        `[0:v]setpts=${Math.min(1.35, Math.max(1, outputDuration / duration)).toFixed(5)}*PTS,tpad=stop_mode=clone:stop_duration=${outputDuration.toFixed(3)},trim=duration=${outputDuration.toFixed(3)},split=2[bgsrc][fgsrc]`,
+        // The source input is looped by FFmpeg only when narration outlives it.
+        // A longer source is simply trimmed at the exact narration endpoint.
+        `[0:v]trim=duration=${outputDuration.toFixed(3)},setpts=PTS-STARTPTS,split=2[bgsrc][fgsrc]`,
         "[bgsrc]scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,boxblur=luma_radius=36:luma_power=2:chroma_radius=18:chroma_power=1,eq=brightness=-0.10:saturation=0.85[bg]",
         "[fgsrc]scale=1080:1920:force_original_aspect_ratio=decrease,setsar=1[fg]",
         "[bg][fg]overlay=(W-w)/2:(H-h)/2:shortest=1[base]",
@@ -2103,14 +2125,13 @@ except Exception as e:
       }
       const filter = [
         ...videoFilters,
-        `[1:a]${voiceFilters},volume=1.0[voice]`,
+        `[1:a]${voiceFilters},atrim=duration=${outputDuration.toFixed(3)},volume=1.0[voice]`,
         `[2:a]volume=${requestedMusicVolume.toFixed(3)},atrim=duration=${outputDuration.toFixed(3)},asetpts=N/SR/TB[music]`,
-        `[voice]apad=pad_dur=1.000[voicepad]`,
-        "[voicepad][music]amix=inputs=2:duration=longest:normalize=0:dropout_transition=0[outa]",
+        "[voice][music]amix=inputs=2:duration=shortest:normalize=0:dropout_transition=0[outa]",
       ].join(";");
       await new Promise<void>((resolve, reject) => {
         const child = spawn(ffmpeg, [
-          "-y", "-i", sourcePath,
+          "-y", "-stream_loop", "-1", "-i", sourcePath,
           "-i", voicePath,
           "-stream_loop", "-1", "-i", musicPath,
           "-filter_complex", filter, "-map", "[v]", "-map", "[outa]",

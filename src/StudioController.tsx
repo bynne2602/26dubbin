@@ -105,6 +105,12 @@ type PipelineJob = {
 };
 
 const RELEASE_NOTES: Record<string, string[]> = {
+  "1.1.1": [
+    "AI Script Shorts: phụ đề karaoke trắng, viền đen và tô vàng theo đúng voice.",
+    "Đưa phụ đề lên vùng an toàn giữa-thấp để dễ đọc trên video dọc.",
+    "Video ngắn hơn voice sẽ tự loop; video dài hơn voice tự cắt đúng điểm kết thúc.",
+    "Loại bỏ nền đen, frame đứng và nhạc nền chạy dư sau khi voice kết thúc.",
+  ],
   "1.1.0": [
     "Ra mắt AI Script Generate: dán link video, AI phân tích nội dung, viết kịch bản mới, tạo TTS, nhạc nền, phụ đề động và render Shorts 9:16.",
     "Bổ sung trình chỉnh sửa timeline nhẹ, tối ưu timestamp voice/phụ đề, preview video và lưu sản phẩm AI Shorts vào thư viện riêng.",
