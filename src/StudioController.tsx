@@ -105,6 +105,12 @@ type PipelineJob = {
 };
 
 const RELEASE_NOTES: Record<string, string[]> = {
+  "1.1.3": [
+    "AI Script Shorts mặc định giọng đọc 1.13x, cao độ +3% và nhạc nền 12%.",
+    "Tách subtitle karaoke lên vùng Y=1220 để không chồng lên tag tiêu đề trong 3 giây đầu.",
+    "Làm mới tag tiêu đề gọn, nền đen mờ và có đường nhấn trắng rõ ràng hơn.",
+    "Thêm outro 1 giây: hình ảnh và nhạc nền mờ dần sang đen sau khi voice kết thúc.",
+  ],
   "1.1.2": [
     "AI Script Shorts không còn ép kịch bản hoặc video đạt tối thiểu 60 giây.",
     "Video kết thúc chính xác theo voice và chỉ giới hạn tối đa 90 giây.",

@@ -1806,8 +1806,8 @@ except Exception as e:
       const requestedMusicStyle = ["funny", "upbeat", "chill", "auto"].includes(String(req.body?.musicStyle))
         ? String(req.body.musicStyle)
         : "funny";
-      const requestedVoiceRate = Math.max(1, Math.min(1.2, Number(req.body?.voiceRate ?? 1.12)));
-      const requestedVoicePitch = Math.max(0, Math.min(5, Number(req.body?.voicePitch ?? 4)));
+      const requestedVoiceRate = Math.max(1, Math.min(1.2, Number(req.body?.voiceRate ?? 1.13)));
+      const requestedVoicePitch = Math.max(0, Math.min(5, Number(req.body?.voicePitch ?? 3)));
       const titleOverlayEnabled = req.body?.titleOverlay !== false;
       const selectedTtsVoice = resolveBeeknoeeVoice(req.body?.voice);
       const isNgocHuyenVoice = selectedTtsVoice.engine === "vieneu" && selectedTtsVoice.id.includes("Ngọc Huyền");
@@ -1939,10 +1939,11 @@ except Exception as e:
       if (processedVoiceDuration > 89.0) {
         throw new Error(`Kịch bản vẫn quá dài (${voiceDuration.toFixed(1)} giây). AI cần tạo lại để video không vượt quá 90 giây.`);
       }
-      // The narration is the master clock for AI Shorts. Never pad a short
-      // narration to 60s: that used to leave a black/frozen tail with music.
-      // FFmpeg loops a short source below and trims a long source here.
-      const outputDuration = Math.min(90, processedVoiceDuration);
+      // The narration is the master clock for AI Shorts. Add exactly one
+      // second for a deliberate fade-to-black outro, never an accidental
+      // frozen/black tail. The 89s guard above keeps the final file <= 90s.
+      const outroDuration = 1;
+      const outputDuration = processedVoiceDuration + outroDuration;
 
       send({ type: "progress", percent: 92, message: "Đang đồng bộ phụ đề theo từng từ của voice..." });
       const pythonExe = await probePythonExe();
@@ -2079,9 +2080,9 @@ except Exception as e:
           const safeWord = word.toLocaleUpperCase("vi-VN").replace(/\\/g, "\\\\").replace(/{/g, "\\{").replace(/}/g, "\\}");
           return `{\\k${durationCs}}${safeWord}`;
         }).join(" ");
-        // Keep captions in the lower-middle safe zone (the marked area), not
-        // against the bottom UI/caption edge of vertical social videos.
-        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,{\\an5\\pos(540,1500)}${karaokeText}`;
+        // Keep karaoke above the 3-second headline card so both remain readable.
+        // Y=1220 is still in the lower-middle safe zone on a 1080x1920 canvas.
+        return `Dialogue: 0,${assTime(start)},${assTime(Math.max(start + 0.12, end))},Shorts,,0,0,0,,{\\an5\\pos(540,1220)}${karaokeText}`;
       });
       const subtitlesPath = path.join(workDir, "shorts.ass");
       fs.writeFileSync(subtitlesPath, [
@@ -2113,19 +2114,21 @@ except Exception as e:
       ];
       if (titleOverlayEnabled && headline) {
         videoFilters.push(
-          "[base]drawbox=x=54:y=ih-650:w=972:h=310:color=black@0.86:t=fill:enable='between(t,0,3)'[tagbox]",
-          "[tagbox]drawbox=x=54:y=ih-650:w=9:h=310:color=white@0.95:t=fill:enable='between(t,0,3)'[tagaccent]",
-          `[tagaccent]drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':textfile='${headlineFilterPath}':fontcolor=white:fontsize=${Math.max(42, headlineFontSize - 3)}:line_spacing=${headlineLineSpacing}:x=max(104\\,(w-text_w)/2):y=max(h-620\\,min(h-380-text_h\\,h-495-text_h/2)):enable='between(t,0,3)'[title]`,
-          `[title]subtitles='${subtitlesFilterPath}'[v]`,
+          "[base]drawbox=x=72:y=ih-565:w=936:h=270:color=black@0.82:t=fill:enable='between(t,0,3)'[tagbox]",
+          "[tagbox]drawbox=x=72:y=ih-565:w=8:h=270:color=white@0.96:t=fill:enable='between(t,0,3)'[tagaccent]",
+          "[tagaccent]drawbox=x=80:y=ih-565:w=928:h=2:color=white@0.24:t=fill:enable='between(t,0,3)'[tagline]",
+          `[tagline]drawtext=fontfile='C\\:/Windows/Fonts/arialbd.ttf':textfile='${headlineFilterPath}':fontcolor=white:fontsize=${Math.max(40, headlineFontSize - 5)}:line_spacing=${headlineLineSpacing}:x=max(120\\,(w-text_w)/2):y=max(h-535\\,min(h-325-text_h\\,h-430-text_h/2)):enable='between(t,0,3)'[title]`,
+          `[title]subtitles='${subtitlesFilterPath}'[composited]`,
         );
       } else {
-        videoFilters.push(`[base]subtitles='${subtitlesFilterPath}'[v]`);
+        videoFilters.push(`[base]subtitles='${subtitlesFilterPath}'[composited]`);
       }
+      videoFilters.push(`[composited]fade=t=out:st=${processedVoiceDuration.toFixed(3)}:d=${outroDuration.toFixed(3)}[v]`);
       const filter = [
         ...videoFilters,
-        `[1:a]${voiceFilters},atrim=duration=${outputDuration.toFixed(3)},volume=1.0[voice]`,
-        `[2:a]volume=${requestedMusicVolume.toFixed(3)},atrim=duration=${outputDuration.toFixed(3)},asetpts=N/SR/TB[music]`,
-        "[voice][music]amix=inputs=2:duration=shortest:normalize=0:dropout_transition=0[outa]",
+        `[1:a]${voiceFilters},apad=pad_dur=${outroDuration.toFixed(3)},atrim=duration=${outputDuration.toFixed(3)},volume=1.0[voice]`,
+        `[2:a]volume=${requestedMusicVolume.toFixed(3)},atrim=duration=${outputDuration.toFixed(3)},afade=t=out:st=${processedVoiceDuration.toFixed(3)}:d=${outroDuration.toFixed(3)},asetpts=N/SR/TB[music]`,
+        "[voice][music]amix=inputs=2:duration=longest:normalize=0:dropout_transition=0[outa]",
       ].join(";");
       await new Promise<void>((resolve, reject) => {
         const child = spawn(ffmpeg, [
