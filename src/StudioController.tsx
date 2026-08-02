@@ -105,6 +105,11 @@ type PipelineJob = {
 };
 
 const RELEASE_NOTES: Record<string, string[]> = {
+  "1.1.4": [
+    "Khôi phục OCR Engine tự động cho các máy bị mất runtime sau khi cập nhật nhẹ.",
+    "Sửa lỗi di chuyển OCR khi thư mục cài đặt và LOCALAPPDATA nằm trên hai ổ đĩa khác nhau.",
+    "OCR được lưu bền vững trong runtime-v2 để các bản cập nhật nhẹ sau không xóa nhầm.",
+  ],
   "1.1.3": [
     "AI Script Shorts mặc định giọng đọc 1.13x, cao độ +3% và nhạc nền 12%.",
     "Tách subtitle karaoke lên vùng Y=1220 để không chồng lên tag tiêu đề trong 3 giây đầu.",

@@ -80,10 +80,22 @@ function preparePersistentRuntime(): string {
     if (!fs.existsSync(source)) continue;
     try {
       if (!fs.existsSync(destination)) {
-        fs.renameSync(source, destination);
+        try {
+          // Fast path when install and LOCALAPPDATA are on the same volume.
+          fs.renameSync(source, destination);
+        } catch (moveError: any) {
+          if (moveError?.code !== "EXDEV" && moveError?.code !== "EPERM" && moveError?.code !== "EACCES") throw moveError;
+          // Windows cannot rename across drives (for example D: -> C:).
+          // Copy the complete runtime and keep the packaged source until the
+          // updater replaces the old installation.
+          fs.cpSync(source, destination, { recursive: true, force: true });
+        }
       } else {
         // Recover an interrupted migration that left only a partial directory.
         fs.cpSync(source, destination, { recursive: true, force: true });
+      }
+      if (directory === "ocr-engine" && !fs.existsSync(path.join(destination, "ocr_engine.exe"))) {
+        throw new Error("OCR runtime copy completed without ocr_engine.exe.");
       }
     } catch (error) {
       console.warn(`[Runtime] Không thể di chuyển ${directory}; tiếp tục dùng runtime trong bộ cài.`, error);

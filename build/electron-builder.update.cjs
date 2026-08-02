@@ -1,5 +1,5 @@
 const packageJson = require("../package.json");
-const includeOcrV5TransitionRuntime = ["1.0.24", "1.0.25", "1.0.26", "1.0.27"].includes(packageJson.version);
+const includeOcrV5TransitionRuntime = ["1.0.24", "1.0.25", "1.0.26", "1.0.27", "1.1.4"].includes(packageJson.version);
 
 module.exports = {
   ...packageJson.build,
