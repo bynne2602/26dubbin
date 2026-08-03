@@ -2,7 +2,7 @@
   "name": "dubbintool",
   "productName": "DubbinTool",
   "private": true,
-  "version": "1.1.4",
+  "version": "1.1.5",
   "type": "module",
   "main": "dist/electron/main.cjs",
   "scripts": {

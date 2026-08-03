@@ -1375,6 +1375,119 @@ except Exception as e:
     { name: "subtitleBlank", maxCount: 1 },
   ]);
 
+  // Long projects cannot safely be assembled in Chromium's AudioContext.  Each
+  // request below renders one bounded time chunk to a persistent local FFmpeg
+  // session; /api/render later consumes that session without re-uploading a
+  // giant merged WAV back through the browser.
+  const voiceSessionRoot = path.join(os.tmpdir(), "dubbin-voice-sessions");
+  fs.mkdirSync(voiceSessionRoot, { recursive: true });
+  const isSafeVoiceSessionId = (value: unknown) => /^[a-f0-9-]{16,64}$/i.test(String(value || ""));
+  const voiceMixUpload = multer({
+    storage: multer.diskStorage({
+      destination: (_req, _file, cb) => cb(null, os.tmpdir()),
+      filename: (_req, file, cb) => cb(null, `dubbin-voice-${Date.now()}-${randomUUID()}-${path.basename(file.originalname || "clip.wav")}`),
+    }),
+    limits: { fileSize: 256 * 1024 * 1024, files: 512, fieldSize: 8 * 1024 * 1024 },
+  });
+  const voiceMixFields = voiceMixUpload.fields([{ name: "clip", maxCount: 512 }]);
+  type VoiceSessionChunk = { index: number; start: number; duration: number; path: string };
+  type VoiceSessionState = { sessionId: string; duration: number; chunks: VoiceSessionChunk[]; updatedAt: number };
+  const voiceSessionStatePath = (sessionId: string) => path.join(voiceSessionRoot, sessionId, "session.json");
+  const readVoiceSession = (sessionId: string): VoiceSessionState | null => {
+    try { return JSON.parse(fs.readFileSync(voiceSessionStatePath(sessionId), "utf-8")); } catch { return null; }
+  };
+  const writeVoiceSession = (state: VoiceSessionState) => {
+    const dir = path.join(voiceSessionRoot, state.sessionId);
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(voiceSessionStatePath(state.sessionId), JSON.stringify(state), "utf-8");
+  };
+  const resolveVoiceSessionWav = async (sessionId: string): Promise<string> => {
+    const state = readVoiceSession(sessionId);
+    if (!state?.chunks?.length) throw new Error("Phiên ghép voice đã hết hạn hoặc chưa hoàn tất. Hãy chuẩn bị Smart TTS lại.");
+    const ordered = [...state.chunks].sort((a, b) => a.index - b.index);
+    if (ordered.some((chunk) => !fs.existsSync(chunk.path))) throw new Error("Một phần voice checkpoint đã hết hạn. Hãy chuẩn bị Smart TTS lại.");
+    const dir = path.join(voiceSessionRoot, sessionId);
+    const output = path.join(dir, "voiceover-final.wav");
+    if (fs.existsSync(output)) return output;
+    const listPath = path.join(dir, "concat.ffconcat");
+    const quote = (value: string) => value.replace(/\\/g, "/").replace(/'/g, "'\\''");
+    fs.writeFileSync(listPath, ["ffconcat version 1.0", ...ordered.flatMap((chunk) => [`file '${quote(chunk.path)}'`, `duration ${chunk.duration.toFixed(6)}`]), `file '${quote(ordered.at(-1)!.path)}'`].join("\n") + "\n", "utf-8");
+    const ffmpeg = findBundledFfmpeg();
+    await new Promise<void>((resolve, reject) => {
+      let stderr = "";
+      const child = spawn(ffmpeg, ["-hide_banner", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", listPath, "-ar", "24000", "-ac", "1", "-c:a", "pcm_s16le", output], { windowsHide: true });
+      child.stderr.on("data", (value: Buffer) => { stderr += value.toString(); });
+      child.once("error", reject);
+      child.once("close", (code) => code === 0 ? resolve() : reject(new Error(stderr.slice(-1000) || `FFmpeg ghép voice dừng (${code}).`)));
+    });
+    return output;
+  };
+
+  app.post("/api/voiceover/chunk", (req, res, next) => voiceMixFields(req, res, (err: any) => err ? res.status(400).json({ error: err.message || "Không nhận được chunk voice." }) : next()), async (req, res) => {
+    const tmpFiles: string[] = [];
+    try {
+      const manifest = JSON.parse(String(req.body.manifest || "{}"));
+      const clips = Array.isArray(manifest.clips) ? manifest.clips : [];
+      const files = ((req.files || {}) as Record<string, Express.Multer.File[]>).clip || [];
+      if (files.length !== clips.length) throw new Error("Chunk voice không khớp số file WAV/timestamp.");
+      const sessionId = isSafeVoiceSessionId(manifest.sessionId) ? String(manifest.sessionId) : randomUUID();
+      const index = Math.max(0, Number(manifest.index) || 0);
+      const start = Math.max(0, Number(manifest.start) || 0);
+      const duration = Math.max(0.05, Number(manifest.duration) || 0);
+      const state = readVoiceSession(sessionId) || { sessionId, duration: Math.max(duration, Number(manifest.totalDuration) || 0), chunks: [], updatedAt: Date.now() };
+      const sessionDir = path.join(voiceSessionRoot, sessionId);
+      fs.mkdirSync(sessionDir, { recursive: true });
+      const output = path.join(sessionDir, `chunk-${String(index).padStart(5, "0")}.wav`);
+      tmpFiles.push(...files.map((file) => file.path));
+      const ffmpeg = findBundledFfmpeg();
+      const args = ["-hide_banner", "-loglevel", "error", "-y", ...files.flatMap((file) => ["-i", file.path])];
+      const filters = clips.map((clip: any, clipIndex: number) => {
+        const rate = Math.max(0.5, Math.min(1.5, Number(clip.rate) || 1));
+        const delay = Math.max(0, Math.round((Number(clip.start) - start) * 1000));
+        return `[${clipIndex}:a]aresample=24000,atempo=${rate.toFixed(5)},adelay=${delay}:all=1,apad,atrim=duration=${duration.toFixed(6)}[a${clipIndex}]`;
+      });
+      const audioGraph = clips.length
+        ? `${filters.join(";")};${clips.map((_clip: any, clipIndex: number) => `[a${clipIndex}]`).join("")}amix=inputs=${clips.length}:duration=longest:normalize=0,atrim=duration=${duration.toFixed(6)}[outa]`
+        : `anullsrc=r=24000:cl=mono,atrim=duration=${duration.toFixed(6)}[outa]`;
+      const scriptPath = path.join(sessionDir, `chunk-${String(index).padStart(5, "0")}.filter`);
+      fs.writeFileSync(scriptPath, audioGraph, "utf-8");
+      await new Promise<void>((resolve, reject) => {
+        let stderr = "";
+        const child = spawn(ffmpeg, [...args, "-filter_complex_script", scriptPath, "-map", "[outa]", "-ar", "24000", "-ac", "1", "-c:a", "pcm_s16le", output], { windowsHide: true });
+        child.stderr.on("data", (value: Buffer) => { stderr += value.toString(); });
+        child.once("error", reject);
+        child.once("close", (code) => code === 0 ? resolve() : reject(new Error(stderr.slice(-1200) || `FFmpeg mix chunk dừng (${code}).`)));
+      });
+      state.duration = Math.max(state.duration, Number(manifest.totalDuration) || 0);
+      state.chunks = state.chunks.filter((chunk) => chunk.index !== index);
+      state.chunks.push({ index, start, duration, path: output });
+      state.updatedAt = Date.now();
+      writeVoiceSession(state);
+      return res.json({ ok: true, sessionId, index, duration });
+    } catch (error: any) {
+      return res.status(500).json({ error: error?.message || "Không thể ghép chunk voice." });
+    } finally {
+      for (const filePath of tmpFiles) { try { fs.unlinkSync(filePath); } catch {} }
+    }
+  });
+
+  app.get("/api/voiceover/session/:sessionId", async (req, res) => {
+    try {
+      const sessionId = String(req.params.sessionId || "");
+      if (!isSafeVoiceSessionId(sessionId) || !readVoiceSession(sessionId)) return res.status(404).json({ ok: false });
+      return res.json({ ok: true });
+    } catch { return res.status(404).json({ ok: false }); }
+  });
+
+  app.get("/api/voiceover/download/:sessionId", async (req, res) => {
+    try {
+      const sessionId = String(req.params.sessionId || "");
+      if (!isSafeVoiceSessionId(sessionId)) return res.status(404).end();
+      const output = await resolveVoiceSessionWav(sessionId);
+      res.download(output, "dubbin-voiceover.wav");
+    } catch (error: any) { res.status(404).json({ error: error?.message || "Voice session không còn." }); }
+  });
+
   // Keep completed MP4 files briefly. URLs may be read repeatedly by the
   // preview player and downloader; the old one-time behavior let <video>
   // consume/delete the file before the user clicked Download.
@@ -1437,7 +1550,7 @@ except Exception as e:
         if (!videoFile) return res.status(400).json({ error: "Thiếu tệp video. Vui lòng đảm bảo gửi file dưới dạng multipart/form-data." });
         tmpFiles.push(videoFile.path);
 
-        const voiceoverFile = files["voiceover"]?.[0];
+        let voiceoverFile = files["voiceover"]?.[0];
         if (voiceoverFile) tmpFiles.push(voiceoverFile.path);
 
         const subtitleFiles = files["subtitle"] || [];
@@ -1455,9 +1568,16 @@ except Exception as e:
           exportDuration,
           originalAudioMixVolume = 0.3,
           hasVoiceover,
+          voiceoverSessionId,
           useAudio,
           subtitleTimeline = [],
         } = params;
+        if (!voiceoverFile && voiceoverSessionId) {
+          const sessionId = String(voiceoverSessionId);
+          if (!isSafeVoiceSessionId(sessionId)) throw new Error("Voice session ID không hợp lệ.");
+          voiceoverFile = { path: await resolveVoiceSessionWav(sessionId) } as Express.Multer.File;
+        }
+        if (hasVoiceover && !voiceoverFile) throw new Error("Không tìm thấy track voice đã chuẩn bị. Hãy chạy lại Smart TTS.");
 
         // Stream progress back via chunked JSON lines
         res.setHeader("Content-Type", "application/x-ndjson");

@@ -54,7 +54,12 @@ export type StoredPreparedVoiceover = {
   id: string;
   projectId: string;
   signature: string;
-  blob: Blob;
+  // Legacy projects may still contain one merged blob. New projects keep the
+  // individual WAV clips in `tts` and reference a native FFmpeg mix session.
+  // Keeping the blob optional lets old checkpoints continue to render.
+  blob?: Blob;
+  sessionId?: string;
+  duration?: number;
   timing: Record<string, { subtitleId: string; start: number; end: number; rate: number }>;
   fittedText: Record<string, string>;
   updatedAt: number;
@@ -89,6 +94,8 @@ export type StoredTtsClip = {
   signature: string;
   subtitleId: string;
   blob: Blob;
+  format?: "wav";
+  durationSeconds?: number;
   updatedAt: number;
 };
 

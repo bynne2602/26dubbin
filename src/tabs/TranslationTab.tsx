@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
-import { FileText, Sparkles, Plus, Download, Edit3, Trash2, Check, RefreshCw, Replace } from "lucide-react";
+import { FileText, Sparkles, Plus, Download, Edit3, Trash2, Check, RefreshCw, Replace, AlertCircle, LocateFixed } from "lucide-react";
 import TranslationLayout from "../layouts/TranslationLayout";
 import TranslationConfigPanel from "../components/TranslationConfigPanel";
 import type { Subtitle } from "../types";
@@ -83,10 +83,24 @@ export default function TranslationTab({
   const [findText, setFindText] = useState("");
   const [replaceText, setReplaceText] = useState("");
   const [replaceScope, setReplaceScope] = useState<"translated" | "original" | "both">("translated");
+  const [showTranslationIssues, setShowTranslationIssues] = useState(false);
   const retryTranslationCount = useMemo(
     () => subtitles.filter(isSubtitleTranslationMissing).length,
     [subtitles],
   );
+  const translationIssues = useMemo(
+    () => subtitles
+      .map((subtitle, index) => ({ subtitle, lineNumber: index + 1 }))
+      .filter(({ subtitle }) => isSubtitleTranslationMissing(subtitle)),
+    [subtitles],
+  );
+
+  const focusTranslationIssue = (subtitle: Subtitle) => {
+    onSeekTo(subtitle.start);
+    window.requestAnimationFrame(() => {
+      document.getElementById(`sub-item-${subtitle.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  };
 
   const replaceMatchCount = useMemo(() => {
     if (!findText) return 0;
@@ -175,13 +189,16 @@ export default function TranslationTab({
               )}
               {subtitles.length > 0 && (
                 <button
-                  onClick={onRetryTranslation}
+                  onClick={() => {
+                    if (retryTranslationCount === 1) focusTranslationIssue(translationIssues[0].subtitle);
+                    else setShowTranslationIssues((open) => !open);
+                  }}
                   disabled={isTranslating || retryTranslationCount === 0}
-                  title="Chỉ gửi lại những dòng trống hoặc vẫn giống nguyên văn; giữ nguyên các câu đã dịch thành công"
+                  title="Xem các dòng chưa dịch hoặc còn giữ nguyên văn, sau đó dịch lại riêng hoặc hàng loạt"
                   className="flex min-h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border border-rose-500/20 bg-rose-500/10 px-2 py-2 text-[10px] font-bold text-rose-600 shadow-sm transition-all hover:bg-rose-500 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
                 >
                   <RefreshCw className={`h-3 w-3 ${isTranslating ? "animate-spin" : ""}`} />
-                  Retry bản dịch ({retryTranslationCount})
+                  {retryTranslationCount === 1 ? "Xem dòng cần dịch lại (1)" : `Xem ${retryTranslationCount} dòng cần dịch lại`}
                 </button>
               )}
               {subtitles.length > 0 && (
@@ -199,6 +216,25 @@ export default function TranslationTab({
             Nhấp vào dòng bất kỳ để chuyển video đến đoạn đó. Bạn có thể <strong className="text-[#4f46e5]">chỉnh sửa trực tiếp bản dịch nhanh</strong> trong ô chữ phía dưới, hoặc nhấn bút chì để tùy chỉnh thời gian.
           </p>
         </div>
+
+        {retryTranslationCount > 0 && showTranslationIssues && (
+          <div className="shrink-0 rounded-xl border border-rose-200 bg-rose-50 p-3">
+            <div className="mb-2 flex items-center justify-between gap-3">
+              <p className="flex items-center gap-1.5 text-xs font-bold text-rose-700"><AlertCircle className="h-3.5 w-3.5" />{retryTranslationCount} dòng chưa dịch hoặc còn giữ nguyên văn</p>
+              <button onClick={onRetryTranslation} disabled={isTranslating} className="rounded-lg bg-rose-600 px-2.5 py-1.5 text-[10px] font-bold text-white hover:bg-rose-700 disabled:opacity-40">Dịch lại tất cả</button>
+            </div>
+            <div className="max-h-32 space-y-1.5 overflow-y-auto pr-1">
+              {translationIssues.map(({ subtitle, lineNumber }) => (
+                <button key={subtitle.id} onClick={() => focusTranslationIssue(subtitle)} className="flex w-full items-center gap-2 rounded-lg border border-rose-100 bg-white px-2.5 py-2 text-left transition hover:border-rose-300 hover:bg-rose-50">
+                  <span className="shrink-0 rounded bg-rose-100 px-1.5 py-0.5 font-mono text-[10px] font-bold text-rose-700">Dòng {lineNumber}</span>
+                  <span className="shrink-0 font-mono text-[10px] text-slate-500">{formatSecondsToVTT(subtitle.start).substring(3, 11)}</span>
+                  <span className="min-w-0 flex-1 truncate text-[11px] font-semibold text-slate-700">{subtitle.original || "(không có nội dung gốc)"}</span>
+                  <LocateFixed className="h-3.5 w-3.5 shrink-0 text-rose-500" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <TranslationConfigPanel compact glossary={translationGlossary} setGlossary={setTranslationGlossary} style={translationStyle} setStyle={setTranslationStyle} />
 

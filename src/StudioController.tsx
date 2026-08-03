@@ -37,6 +37,18 @@ const SubtitleExtractionTab = React.lazy(() => import("./tabs/SubtitleExtraction
 const TimelineEditorTab = React.lazy(() => import("./tabs/TimelineEditorTab"));
 const AiScriptShortsTab = React.lazy(() => import("./tabs/AiScriptShortsTab"));
 
+async function normalizeAudioBlobToWav(source: Blob): Promise<Blob> {
+  if (source.type === "audio/wav" || source.type === "audio/x-wav") return source;
+  const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+  const context = new AudioContextClass();
+  try {
+    const decoded = await context.decodeAudioData((await source.arrayBuffer()).slice(0));
+    return await bufferToWavAsync(decoded);
+  } finally {
+    await context.close().catch(() => undefined);
+  }
+}
+
 function parseGeminiApiKeys(value: string): string[] {
   return Array.from(new Set(
     value
@@ -105,6 +117,11 @@ type PipelineJob = {
 };
 
 const RELEASE_NOTES: Record<string, string[]> = {
+  "1.1.5": [
+    "Bản dịch lỗi giờ hiển thị đúng số dòng, timestamp và câu gốc để nhảy thẳng tới vị trí cần sửa.",
+    "Có thể dịch lại riêng từng dòng hoặc dịch lại toàn bộ các dòng còn thiếu mà không ảnh hưởng câu đã hoàn tất.",
+    "Chuẩn hóa cache TTS theo WAV để giảm lỗi decode ở các dự án dài.",
+  ],
   "1.1.4": [
     "Khôi phục OCR Engine tự động cho các máy bị mất runtime sau khi cập nhật nhẹ.",
     "Sửa lỗi di chuyển OCR khi thư mục cài đặt và LOCALAPPDATA nằm trên hai ổ đĩa khác nhau.",
@@ -2580,7 +2597,8 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
   const fullTtsAudioRef = useRef<HTMLAudioElement | null>(null);
   const voiceTimingRef = useRef<Record<string, VoiceTiming>>({});
   const fittedTtsTextRef = useRef<Record<string, string>>({});
-  const preparedVoiceoverRef = useRef<{ signature: string; blob: Blob } | null>(null);
+  type PreparedVoiceover = { signature: string; blob: Blob };
+  const preparedVoiceoverRef = useRef<PreparedVoiceover | null>(null);
   const preparingVoiceoverPromiseRef = useRef<Promise<Blob> | null>(null);
 
   // Clear Gemini voice cache when the selected voice changes
@@ -3433,6 +3451,17 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
     let stableTikTokRequests = 0;
     let tiktokCooldownUntil = 0;
     let fatalTtsError: Error | null = null;
+    // Persist one portable WAV per cue. Serialize decoding: Chromium can
+    // become unstable when many short MP3 clips are decoded simultaneously.
+    let wavNormalizationQueue = Promise.resolve();
+    const normalizeClipToWav = (source: Blob): Promise<Blob> => {
+      const task = wavNormalizationQueue.then(async () => {
+        if (source.type === "audio/wav" || source.type === "audio/x-wav") return source;
+        return normalizeAudioBlobToWav(source);
+      });
+      wavNormalizationQueue = task.then(() => undefined, () => undefined);
+      return task;
+    };
 
     const reduceTikTokConcurrency = (reason: string) => {
       if (activeTtsEngine !== "tiktok") return;
@@ -3547,6 +3576,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
               signature,
               subtitleId: sub.id,
               blob: audioBlob,
+              format: "wav",
               updatedAt: Date.now(),
             } satisfies StoredTtsClip);
           }
@@ -3566,8 +3596,14 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
         if (ttsCacheId) {
           const storedTts = await projectDbGet<StoredTtsClip>("tts", ttsCacheId).catch(() => undefined);
           if (storedTts?.blob && storedTts.signature === signature) {
-            cacheRef.current[sub.id] = URL.createObjectURL(storedTts.blob);
+            const storedBlob = storedTts.format === "wav" || storedTts.blob.type === "audio/wav"
+              ? storedTts.blob
+              : await normalizeClipToWav(storedTts.blob);
+            cacheRef.current[sub.id] = URL.createObjectURL(storedBlob);
             ttsCacheSignatureRef.current[sub.id] = signature;
+            if (storedBlob !== storedTts.blob) {
+              await projectDbPut("tts", { ...storedTts, blob: storedBlob, format: "wav", updatedAt: Date.now() });
+            }
             addLog(`[TTS ${i + 1}/${subtitles.length}] Khôi phục audio từ checkpoint, không gọi API.`);
             return;
           }
@@ -3587,6 +3623,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
           for (const clause of clauses) clauseBlobs.push(await synthesizeBlob(clause, i + 1));
           audioBlob = await concatenateAudioBlobs(clauseBlobs);
         }
+        audioBlob = await normalizeClipToWav(audioBlob);
         cacheRef.current[sub.id] = URL.createObjectURL(audioBlob);
         ttsCacheSignatureRef.current[sub.id] = signature;
         if (ttsCacheId && activeProjectId) {
@@ -3596,6 +3633,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
             signature,
             subtitleId: sub.id,
             blob: audioBlob,
+            format: "wav",
             updatedAt: Date.now(),
           } satisfies StoredTtsClip).then(() => true).catch((error) => {
             console.warn("Could not persist TTS clip:", error);
@@ -3713,7 +3751,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
     // Chromium's media decoder pool. Worse, decodeAudioData may never settle
     // for a damaged blob, leaving Smart TTS stuck at 100% forever. Keep a
     // small bounded queue and fail a specific clip after a real timeout.
-    const decodedResults = new Array<{ sub: Subtitle; decoded: AudioBuffer }>(validSubs.length);
+    const decodedResults = new Array<{ sub: Subtitle; rawDuration: number; trimmedDuration: number; sourceUrl: string }>(validSubs.length);
     let decodeCursor = 0;
     let decodedCount = 0;
     const decodeWorker = async () => {
@@ -3736,7 +3774,10 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
               timeoutId = window.setTimeout(() => reject(new Error("decode quá 30 giây")), 30_000);
             }),
           ]);
-          decodedResults[index] = { sub, decoded };
+          // Keep only timing metadata. Retaining every AudioBuffer is what
+          // makes multi-hour projects exhaust renderer memory.
+          const trimmed = trimAudioBufferSilence(decoded);
+          decodedResults[index] = { sub, rawDuration: decoded.duration, trimmedDuration: trimmed.duration, sourceUrl: url };
         } catch (error: any) {
           delete cacheRef.current[sub.id];
           const signature = ttsCacheSignatureRef.current[sub.id];
@@ -3758,20 +3799,24 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
         }
       }
     };
-    await Promise.all(Array.from({ length: Math.min(6, validSubs.length) }, () => decodeWorker()));
+    // Chromium's FFmpeg-backed decodeAudioData can assert when many short TTS
+    // clips share one AudioContext concurrently. Decode cached clips in order;
+    // this is deterministic for large Editor projects and avoids crashing the
+    // renderer process inside ffmpeg_filter.c.
+    await decodeWorker();
 
     const decodedClips = decodedResults
-      .map(({ sub, decoded }) => {
-        const trimmed = trimAudioBufferSilence(decoded);
+      .map(({ sub, rawDuration, trimmedDuration, sourceUrl }) => {
         const text = fittedTtsTextRef.current[sub.id]?.trim() || sub.translated?.trim() || sub.original?.trim() || "";
         const characterCount = countSpeechCharacters(text);
         return {
           sub,
           text,
-          rawDuration: decoded.duration,
-          trimmed,
+          rawDuration,
+          trimmedDuration,
+          sourceUrl,
           characterCount,
-          charsPerSecond: characterCount / Math.max(0.05, trimmed.duration),
+          charsPerSecond: characterCount / Math.max(0.05, trimmedDuration),
         };
       })
       .sort((a, b) => a.sub.start - b.sub.start);
@@ -3801,10 +3846,10 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
     const preparedClips = decodedClips.map((clip, index) => {
       const naturalTarget = medianCharsPerSecond > 0
         ? clip.characterCount / medianCharsPerSecond
-        : clip.trimmed.duration;
+        : clip.trimmedDuration;
       const normalizationRate = Math.max(
         0.85,
-        Math.min(1.3, clip.trimmed.duration / Math.max(0.05, naturalTarget)),
+        Math.min(1.3, clip.trimmedDuration / Math.max(0.05, naturalTarget)),
       );
       const previousEnd = decodedClips[index - 1]?.sub.end ?? 0;
       const nextStart = decodedClips[index + 1]?.sub.start ?? totalDuration;
@@ -3818,7 +3863,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
       const availableDuration = Math.max(0.1, adjustedEnd - adjustedStart);
       // Nếu audio đã ngắn hơn slot thì không cần tăng tốc, để rate=1.0
       // Nếu audio dài hơn slot thì mới cần tăng để vừa slot
-      const requiredRate = clip.trimmed.duration / availableDuration;
+      const requiredRate = clip.trimmedDuration / availableDuration;
       let preferredRate: number;
       if (!smartTtsEnabled) {
         preferredRate = baseRate;
@@ -3850,7 +3895,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
       const group = preparedClips.filter((clip) => clip.groupId === groupId);
       const groupStart = group[0].adjustedStart;
       const groupEnd = group[group.length - 1].adjustedEnd;
-      const requiredDuration = group.reduce((sum, clip) => sum + clip.trimmed.duration / SMART_TTS_MAX_RATE, 0)
+      const requiredDuration = group.reduce((sum, clip) => sum + clip.trimmedDuration / SMART_TTS_MAX_RATE, 0)
         + Math.max(0, group.length - 1) * SMART_TTS_VOICE_GAP_SECONDS;
       groupFitAtMaxRate.set(groupId, requiredDuration <= groupEnd - groupStart + 0.01);
     }
@@ -3858,7 +3903,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
 
     type ScheduledVoiceClip = {
       subtitleId: string;
-      buffer: AudioBuffer;
+      sourceUrl: string;
       start: number;
       rate: number;
       originalStart: number;
@@ -3882,9 +3927,9 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
         const start = index === 0
           ? desiredStart
           : Math.max(desiredStart, voiceCursor + gapSeconds);
-        const end = start + clip.trimmed.duration / rate;
+        const end = start + clip.trimmedDuration / rate;
         voiceCursor = end;
-        return { subtitleId: clip.sub.id, buffer: clip.trimmed, start, rate, originalStart, desiredStart, end };
+        return { subtitleId: clip.sub.id, sourceUrl: clip.sourceUrl, start, rate, originalStart, desiredStart, end };
       });
     };
 
@@ -3927,10 +3972,10 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
     let scheduledClips = buildVoiceSchedule(rateMultiplier, selectedGap);
     const requiresContentFit = preparedClips.some((clip, index) => {
       const availableDuration = Math.max(0.35, clip.availableDuration);
-      const durationRatio = Math.min(0.88, (availableDuration * SMART_TTS_MAX_RATE) / Math.max(0.05, clip.trimmed.duration));
+      const durationRatio = Math.min(0.88, (availableDuration * SMART_TTS_MAX_RATE) / Math.max(0.05, clip.trimmedDuration));
       const fullCharacterCount = Math.max(1, Array.from(clip.text).length);
       const maxChars = Math.max(8, Math.floor(fullCharacterCount * Math.max(0.18, durationRatio) * 0.92));
-      const exceedsOwnSlot = clip.trimmed.duration / SMART_TTS_MAX_RATE > availableDuration;
+      const exceedsOwnSlot = clip.trimmedDuration / SMART_TTS_MAX_RATE > availableDuration;
       // Only start another AI fitting pass when the character budget can
       // actually become shorter. Otherwise the sequential scheduler safely
       // borrows a following gap without reordering subtitle timestamps.
@@ -4041,21 +4086,21 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
               groupId: clip.groupId,
               maxChars,
               contributesToOverrun,
-              recoverableSeconds: (clip.trimmed.duration / SMART_TTS_MAX_RATE)
+              recoverableSeconds: (clip.trimmedDuration / SMART_TTS_MAX_RATE)
                 * Math.max(0, 1 - maxChars / fullCharacterCount),
               index,
             };
           };
           let fitItemsRaw: RawFitItem[] = preparedClips.map((clip, index) => {
             const availableDuration = Math.max(0.35, clip.availableDuration);
-            const durationRatio = Math.min(0.88, (availableDuration * SMART_TTS_MAX_RATE) / Math.max(0.05, clip.trimmed.duration));
+            const durationRatio = Math.min(0.88, (availableDuration * SMART_TTS_MAX_RATE) / Math.max(0.05, clip.trimmedDuration));
             const fullCharacterCount = Math.max(1, Array.from(clip.text).length);
             const maxChars = Math.max(8, Math.floor(fullCharacterCount * Math.max(0.18, durationRatio) * 0.92));
             return makeFitItem(
               clip,
               index,
               maxChars,
-              clip.trimmed.duration / SMART_TTS_MAX_RATE > availableDuration && !groupFitAtMaxRate.get(clip.groupId),
+              clip.trimmedDuration / SMART_TTS_MAX_RATE > availableDuration && !groupFitAtMaxRate.get(clip.groupId),
             );
           }).filter((item) => (
             item.contributesToOverrun
@@ -4070,7 +4115,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
             // clips from the aggregate timing chain instead of aborting with
             // an empty local-overflow candidate list.
             const compressedSpeechDuration = preparedClips.reduce(
-              (sum, clip) => sum + clip.trimmed.duration / SMART_TTS_MAX_RATE,
+              (sum, clip) => sum + clip.trimmedDuration / SMART_TTS_MAX_RATE,
               0,
             );
             const globalReductionRatio = Math.max(
@@ -4270,7 +4315,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
             const group = [...fitGroups.values()].find((value) => value.memberIds.includes(representativeId));
             const targetIds = group?.memberIds ?? [representativeId];
             addLog(`[Smart TTS ${index + 1}/${fittedEntries.length}] Đang tạo lại câu đã rút gọn (áp dụng cho ${targetIds.length} dòng trùng lặp)...`);
-            const fittedBlob = await synthesizeFittedBlob(fittedText);
+            const fittedBlob = await normalizeAudioBlobToWav(await synthesizeFittedBlob(fittedText));
             const signature = `${activeTtsEngine}|${activeVoice}|${fittedText}`;
             const activeProjectId = currentProjectId || (videoFile ? makeProjectId(videoFile) : "");
             for (const subtitleId of targetIds) {
@@ -4288,6 +4333,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
                   signature,
                   subtitleId,
                   blob: fittedBlob,
+                  format: "wav",
                   updatedAt: Date.now(),
                 } satisfies StoredTtsClip).catch((error) => console.warn("Could not persist fitted TTS clip:", error));
               }
@@ -4309,7 +4355,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
       addLog(
         `[Smart TTS #${index + 1} · ${source.groupId}] slot=${source.slotDuration.toFixed(2)}s, ` +
         `GAP mượn=${source.borrowedBefore.toFixed(2)}s trước/${source.borrowedAfter.toFixed(2)}s sau, ` +
-        `raw=${source.rawDuration.toFixed(2)}s, trim=${source.trimmed.duration.toFixed(2)}s, ` +
+        `raw=${source.rawDuration.toFixed(2)}s, trim=${source.trimmedDuration.toFixed(2)}s, ` +
         `mốc=${clip.originalStart.toFixed(2)}s→${clip.start.toFixed(2)}s, nhích=${shiftedBy.toFixed(2)}s, ` +
         `rate cần=${source.requiredRate.toFixed(2)}x, áp dụng=${clip.rate.toFixed(2)}x, final=${(clip.end - clip.start).toFixed(2)}s`,
       );
@@ -4342,19 +4388,46 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
 
 
     // Time-stretch dùng OfflineAudioContext (Web Audio API); atempo do server ffmpeg.exe xử lý khi render.
-    const pitchPreservingCtx = new AudioContextClass();
+    let pitchPreservingCtx = new AudioContextClass();
     type PitchPreservedClip = ScheduledVoiceClip & { renderedBuffer: AudioBuffer };
     const pitchPreservedClips = new Array<PitchPreservedClip>(scheduledClips.length);
     let stretchCursor = 0;
+    let stretchDecodeQueue = Promise.resolve();
+    const decodeStretchedAudioSafely = (bytes: ArrayBuffer) => {
+      const task = stretchDecodeQueue.then(async () => {
+        let lastError: unknown;
+        for (let attempt = 1; attempt <= 2; attempt += 1) {
+          try {
+            return await pitchPreservingCtx.decodeAudioData(bytes.slice(0));
+          } catch (error) {
+            lastError = error;
+            try {
+              await pitchPreservingCtx.close();
+            } catch {
+              // A failed decoder can leave its context unusable.
+            }
+            pitchPreservingCtx = new AudioContextClass();
+          }
+        }
+        throw lastError || new Error("Không thể decode audio sau time-stretch");
+      });
+      stretchDecodeQueue = task.then(() => undefined, () => undefined);
+      return task;
+    };
     const stretchWorker = async () => {
       while (stretchCursor < scheduledClips.length) {
         const clipIndex = stretchCursor++;
         const clip = scheduledClips[clipIndex];
+        const sourceBlob = await fetch(clip.sourceUrl, { signal: pipelineSignal }).then((response) => {
+          if (!response.ok) throw new Error(`Không thể đọc WAV của câu ${clipIndex + 1}.`);
+          return response.blob();
+        });
         if (Math.abs(clip.rate - 1) < 0.001) {
-          pitchPreservedClips[clipIndex] = { ...clip, renderedBuffer: clip.buffer };
+          const renderedBuffer = await decodeStretchedAudioSafely(await sourceBlob.arrayBuffer());
+          pitchPreservedClips[clipIndex] = { ...clip, renderedBuffer };
           continue;
         }
-      const sourceBytes = new Uint8Array(await (await bufferToWavAsync(clip.buffer)).arrayBuffer());
+      const sourceBytes = new Uint8Array(await sourceBlob.arrayBuffer());
       let binary = "";
       const chunkSize = 0x8000;
       for (let offset = 0; offset < sourceBytes.length; offset += chunkSize) {
@@ -4368,7 +4441,7 @@ export default function StudioController({ activeRoute, onNavigate }: StudioCont
       });
       const payload = await readJsonResponse(response);
       const decodedBytes = Uint8Array.from(atob(String(payload.audio || "")), (char) => char.charCodeAt(0));
-      const renderedBuffer = await pitchPreservingCtx.decodeAudioData(decodedBytes.buffer);
+      const renderedBuffer = await decodeStretchedAudioSafely(decodedBytes.buffer);
         pitchPreservedClips[clipIndex] = { ...clip, renderedBuffer };
       }
     };
