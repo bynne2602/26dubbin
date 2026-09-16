@@ -1,6 +1,6 @@
 <div align="center">
 
-# 26Dubbin (DubbinTool)
+# 26Dub (DubbinTool)
 
 **AI video dubbing & auto-subtitle desktop app for Vietnamese creators**
 
@@ -41,7 +41,7 @@ Auto-dub · OCR subtitle extraction · Translation · Voice cloning · MP4 rende
 
 ## 💡 About
 
-**26Dubbin** is a desktop application (Electron + local server) that turns any video into a fully dubbed, subtitled Vietnamese production automatically. Upload a video and the app handles the entire pipeline:
+**26Dub** is a desktop application (Electron + local server) that turns any video into a fully dubbed, subtitled Vietnamese production automatically. Upload a video and the app handles the entire pipeline:
 
 1. **OCR / transcription** — extract burned-in subtitles from video frames with PaddleOCR
 2. **Translation** — Gemini-powered translation with per-project glossary and style control
@@ -201,7 +201,7 @@ Licenses are bound to machine HWID. An in-app admin panel supports user lookup, 
 
 ## 📄 License
 
-Proprietary. © 26Dubbin. All rights reserved. Third-party components are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+Proprietary. © 26Dub. All rights reserved. Third-party components are listed in [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
 
 ---
 
